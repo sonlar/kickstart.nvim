@@ -1,9 +1,3 @@
--- Set tab/space/indent spacing
--- vim.opt_local.tabstop = 2
-vim.opt_local.shiftwidth = 2
-vim.opt_local.softtabstop = 2
-vim.opt_local.expandtab = true
-
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
@@ -17,6 +11,23 @@ vim.g.have_nerd_font = true
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
+
+-- Tab movements
+local function makeTab(tab)
+  for _ = 1, tab do
+    if vim.fn.tabpagenr '$' >= 5 then
+      break
+    end
+    vim.cmd 'tabnew'
+  end
+end
+for i = 1, 5 do
+  vim.keymap.set('n', '<leader>n' .. i, function()
+    makeTab(i)
+  end, { desc = 'New tab ' .. i })
+  vim.keymap.set('n', '<leader>d' .. i, ':tabclose ' .. i .. '<CR>', { desc = 'Delete tab ' .. i })
+  vim.keymap.set('n', '<leader>m' .. i, ':tabmove ' .. i .. '<CR>', { desc = 'Move tab ' .. i })
+end
 
 -- Make line numbers default
 vim.o.number = true
@@ -267,6 +278,9 @@ require('lazy').setup({
         { '<leader>s', group = '[S]earch' },
         { '<leader>t', group = '[T]oggle' },
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
+        { '<leader>d', group = '[D]elete Tab', icon = { icon = '󱪛', color = 'red' } },
+        { '<leader>n', group = '[N]ew Tab', icon = { icon = '󱪝', color = 'green' } },
+        { '<leader>m', group = '[M]ove Tab', icon = { icon = '󱔗', color = 'blue' } },
       },
     },
   },
@@ -618,6 +632,7 @@ require('lazy').setup({
             },
           },
         },
+        jdtls = {},
       }
 
       -- Ensure the servers and tools above are installed
@@ -671,7 +686,7 @@ require('lazy').setup({
       },
     },
     opts = {
-      notify_on_error = true,
+      notify_on_error = false,
       format_on_save = function(bufnr)
         -- Disable "format_on_save lsp_fallback" for languages that don't
         -- have a well standardized coding style. You can add additional

@@ -1,0 +1,77 @@
+return {
+  --   'ThePrimeagen/harpoon',
+  --   branch = 'harpoon2',
+  --   dependencies = { 'nvim-lua/plenary.nvim' },
+  --   config = function()
+  --     local harpoon = require 'harpoon'
+  --     harpoon:setup()
+  --
+  --     vim.keymap.set('n', '<leader>a', function()
+  --       harpoon:list():add()
+  --     end, { desc = '[a]dd to harpoon' })
+  --     vim.keymap.set('n', '<leader>e', function()
+  --       harpoon.ui:toggle_quick_menu(harpoon:list())
+  --     end, { desc = '[e]xplore harpoon menu' })
+  --
+  --     local wk = require 'which-key'
+  --
+  --     -- Set up the keymaps first
+  --     for idx = 1, 5 do
+  --       vim.keymap.set('n', string.format('<leader>%d', idx), function()
+  --         harpoon:list():select(idx)
+  --       end, { desc = '' })
+  --     end
+  --
+  --     -- Map extensions to icon names
+  --     local ext_to_icon = {
+  --       js = 'javascript',
+  --       ts = 'typescript',
+  --       jsx = 'javascript',
+  --       tsx = 'typescript',
+  --     }
+  --     -- Register with which-key with dynamic descriptions and file icons
+  --     local harpoon_mappings = {
+  --       {
+  --         '<leader>a',
+  --         desc = '[a]dd to harpoon',
+  --         icon = { icon = '󰐃', color = 'red' },
+  --       },
+  --       {
+  --         '<leader>e',
+  --         desc = '[e]xplore harpoon menu',
+  --         icon = { icon = '󰉋', color = 'blue' },
+  --       },
+  --     }
+  --     for idx = 1, 5 do
+  --       table.insert(harpoon_mappings, {
+  --         string.format('<leader>%d', idx),
+  --         desc = function()
+  --           local items = harpoon:list().items or {}
+  --           if items[idx] then
+  --             local file_path = vim.fn.fnamemodify(items[idx].value, ':p')
+  --             local shortname = vim.fn.fnamemodify(file_path, ':t')
+  --             return shortname
+  --           else
+  --             return 'Empty buffer ' .. idx
+  --           end
+  --         end,
+  --         icon = function()
+  --           local items = harpoon:list().items or {}
+  --           if items[idx] then
+  --             local file_path = vim.fn.fnamemodify(items[idx].value, ':p')
+  --             local ext = vim.fn.fnamemodify(file_path, ':e')
+  --             local icon_ext = ext_to_icon[ext] or ext
+  --             return {
+  --               cat = 'filetype',
+  --               name = icon_ext,
+  --             }
+  --           else
+  --             return { icon = '󰈆', color = 'green' }
+  --           end
+  --         end,
+  --       })
+  --     end
+  --
+  --     wk.add(harpoon_mappings)
+  --   end,
+}
