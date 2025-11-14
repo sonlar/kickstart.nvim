@@ -12,23 +12,6 @@ vim.g.have_nerd_font = true
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
--- Tab movements
-local function makeTab(tab)
-  for _ = 1, tab do
-    if vim.fn.tabpagenr '$' >= 5 then
-      break
-    end
-    vim.cmd 'tabnew'
-  end
-end
-for i = 1, 5 do
-  vim.keymap.set('n', '<leader>n' .. i, function()
-    makeTab(i)
-  end, { desc = 'New tab ' .. i })
-  vim.keymap.set('n', '<leader>d' .. i, ':tabclose ' .. i .. '<CR>', { desc = 'Delete tab ' .. i })
-  vim.keymap.set('n', '<leader>m' .. i, ':tabmove ' .. i .. '<CR>', { desc = 'Move tab ' .. i })
-end
-
 -- Make line numbers default
 vim.o.number = true
 -- You can also add relative line numbers, to help with jumping.
