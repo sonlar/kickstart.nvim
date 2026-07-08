@@ -1,20 +1,15 @@
-return {
-  {
-    'chomosuke/typst-preview.nvim',
-    lazy = false, -- or ft = 'typst'
-    version = '1.*',
-    opts = {}, -- lazy.nvim will implicitly calls `setup {}`
-    config = function()
-      vim.lsp.config['tinymist'] = {
-        cmd = { 'tinymist' },
-        filetypes = { 'typst' },
-        settings = {
-          formatterMode = 'typstyle',
-          exportPdf = 'onType',
-          semanticTokens = 'disable',
-        },
-      }
-      vim.lsp.enable 'tinymist'
-    end,
+local function gh(repo) return 'https://github.com/' .. repo end
+
+vim.pack.add { { src = gh 'chomosuke/typst-preview.nvim', version = vim.version.range '1.*' } }
+require('typst-preview').setup {}
+
+vim.lsp.config.tinymist = {
+  cmd = { 'tinymist' },
+  filetypes = { 'typst' },
+  settings = {
+    formatterMode = 'typstyle',
+    exportPdf = 'onType',
+    semanticTokens = 'disable',
   },
 }
+vim.lsp.enable 'tinymist'
