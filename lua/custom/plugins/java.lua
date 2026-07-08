@@ -11,7 +11,7 @@ require('java').setup()
 vim.lsp.enable 'jdtls'
 
 local wk = require 'which-key'
-wk.add {
+local java_keymaps = {
   { '<leader>j', group = '[J]ava', icon = { icon = '', color = 'orange' } },
   { '<leader>jb', group = 'Build' },
   { '<leader>jbb', "<cmd>lua require('java').build.build_workspace()<CR>", desc = 'Build Workspace' },
@@ -40,3 +40,11 @@ wk.add {
   { '<leader>js', group = 'Settings', icon = { icon = '', color = 'grey' } },
   { '<leader>jsr', "<cmd>lua require('java').settings.change_runtime()<CR>", desc = 'Change Runtime' },
 }
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'java',
+  group = vim.api.nvim_create_augroup('custom-java-which-key', { clear = true }),
+  callback = function(ev)
+    wk.add(java_keymaps, { buffer = ev.buf })
+  end,
+})
