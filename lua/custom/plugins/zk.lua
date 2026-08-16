@@ -1,0 +1,40 @@
+-- local function gh(repo) return 'https://github.com/' .. repo end
+--
+-- vim.pack.add {
+--   { src = gh 'zk-org/zk-nvim' },
+-- }
+--
+-- -- Set default notebook directory fallback if ZK_NOTEBOOK_DIR environment variable is not already set
+-- vim.env.ZK_NOTEBOOK_DIR = vim.env.ZK_NOTEBOOK_DIR or vim.fn.expand('~/Documents/Notes')
+--
+-- require('zk').setup {
+--   picker = 'telescope',
+--   lsp = {
+--     config = {
+--       name = 'zk',
+--       cmd = { 'zk', 'lsp' },
+--       filetypes = { 'markdown', 'vimwiki' },
+--     },
+--     auto_attach = {
+--       enabled = true,
+--     },
+--   },
+--   tags = {
+--     multi_select_strategy = 'AND',
+--   },
+-- }
+--
+-- local opts = { silent = false }
+--
+-- -- Create a new note after asking for its title.
+-- vim.keymap.set('n', '<leader>zn', "<Cmd>ZkNew { title = vim.fn.input('Title: ') }<CR>", vim.tbl_extend('force', opts, { desc = 'ZK: New note' }))
+--
+-- -- Open notes.
+-- vim.keymap.set('n', '<leader>zo', "<Cmd>ZkNotes { sort = { 'modified' } }<CR>", vim.tbl_extend('force', opts, { desc = 'ZK: Open notes' }))
+-- -- Open notes associated with the selected tags.
+-- vim.keymap.set('n', '<leader>zt', '<Cmd>ZkTags<CR>', vim.tbl_extend('force', opts, { desc = 'ZK: Browse tags' }))
+--
+-- -- Search for the notes matching a given query.
+-- vim.keymap.set('n', '<leader>zf', "<Cmd>ZkNotes { sort = { 'modified' }, match = { vim.fn.input('Search: ') } }<CR>", vim.tbl_extend('force', opts, { desc = 'ZK: Find notes' }))
+-- -- Search for the notes matching the current visual selection.
+-- vim.keymap.set('v', '<leader>zf', ":'<,'>ZkMatch<CR>", vim.tbl_extend('force', opts, { desc = 'ZK: Find from selection' }))

@@ -615,9 +615,12 @@ do
     --    https://github.com/pmizio/typescript-tools.nvim
     --
     -- But for many setups, the LSP (`ts_ls`) will work just fine
-    -- ts_ls = {},
+    ts_ls = {},
+    emmet_ls = {},
 
     stylua = {}, -- Used to format Lua code
+    markdownlint = {},
+    bashls = {},
 
     -- Special Lua Config, as recommended by neovim help docs
     lua_ls = {
@@ -717,13 +720,13 @@ do
     formatters_by_ft = {
       -- rust = { 'rustfmt' },
       -- Conform can also run multiple formatters sequentially
-      python = { "isort", "black" , "bandit"},
-      java = {'google-java-format'},
+      python = { 'isort', 'black', 'bandit' },
+      java = { 'google-java-format' },
       -- You can use 'stop_after_first' to run the first available formatter from the list
-      javascript = { "prettierd", "prettier", stop_after_first = true },
-      javascriptreact = { 'prettierd', 'prettier', stop_after_first = true },
-      typescript = { 'prettierd', 'prettier', stop_after_first = true },
-      typescriptreact = { 'prettierd', 'prettier', stop_after_first = true },
+      javascript = { 'oxfmt', stop_after_first = true },
+      javascriptreact = { 'oxfmt', stop_after_first = true },
+      typescript = { 'oxfmt', stop_after_first = true },
+      typescriptreact = { 'oxfmt', stop_after_first = true },
     },
   }
 
